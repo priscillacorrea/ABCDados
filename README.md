@@ -1,4 +1,4 @@
-ABC Dados: Tutorial de R
+ABC Dados: Tutoriais de R
 ================
 
 ### Onde eu vim parar?
@@ -7,13 +7,15 @@ Neste repositório você vai encontrar 10 tutoriais para começar a aprender R d
 
 ### O que é R?
 
-R (pronunciado em portugês como "erre"), é uma linguagem de programação focada em análise e visualização estatística. Ela foi criada em 1993 por dois pesquisadores da Nova Zelândia e hoje em dia é uma das linguagens de programação mais famosas do mundo!
+R (pronunciado em português como "erre"), é uma linguagem de programação focada em análise e visualização estatística. Ela foi criada em 1993 por dois pesquisadores da Nova Zelândia e hoje em dia é uma das linguagens de programação mais famosas do mundo!
 
 ### Por que aprender R?
 
 Diferentemente do Excel, o R é capaz de manipular dados de uma forma muito mais eficiente e consistente. Um exemplo bastante prático é o limite de linhas: enquanto no Excel você não pode passar de 1 milhão de linhas, o R aguenta fácil bem mais que isso.
 
 Conforme você for se acostumando com a programação, também vai ficar evidente o quão melhor é fazer uma análise sem precisar lutar com a interface do Excel. Com o R podemos salvar múltiplas versões de uma análise sem ocupar muito espaço no computador, podemos compartilhar arquivos com facilidade e, mais importante ainda, conseguimos ver exatamente o que está sendo feito durante o tratamento dos dados.
+
+Então se você já sabe Excel e tem encontrado dificuldades para fazer análises mais complexas, esse tutorial é ideal para você!
 
 ### O que é uma linguagem de programação?
 

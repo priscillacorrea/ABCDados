@@ -17,7 +17,7 @@ a pasta **01_instalacao**.
 
 ### O que é R?
 
-R (pronunciado em portugês como "erre"), é uma linguagem de programação focada
+R (pronunciado em português como "erre"), é uma linguagem de programação focada
 em análise e visualização estatística. Ela foi criada em 1993 por dois
 pesquisadores da Nova Zelândia e hoje em dia é uma das linguagens de programação
 mais famosas do mundo!
@@ -35,6 +35,9 @@ Com o R podemos salvar múltiplas versões de uma análise sem ocupar muito espa
 no computador, podemos compartilhar arquivos com facilidade e, mais importante
 ainda, conseguimos ver exatamente o que está sendo feito durante o tratamento
 dos dados.
+
+Então se você já sabe Excel e tem encontrado dificuldades para fazer
+análises mais complexas, esse tutorial é ideal para você!
 
 ### O que é uma linguagem de programação?
 
