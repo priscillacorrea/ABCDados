@@ -1,0 +1,310 @@
+Tutorial 02: Fundamentais
+================
+
+### Sobre este tutorial
+
+Aqui você aprenderá os fundamentais da interface do RStudio e da
+linguagem R de programação. Os principais conceitos de R abordados neste
+tutorial são comuns para qualquer outra linguagem (operações aritméticas
+e objetos), logo acabam servindo como uma introdução à programação no
+geral.
+
+### O RStudio
+
+Na figura abaixo você verá o RStudio aberto com algum código já
+executado. Não se preocupe com os detalhes, o objetivo dessa imagem é só
+ilustrar o que cada parte da interface faz.
+
+``` r
+knitr::include_graphics("README_files/01_rstudio.png")
+```
+
+![](README_files/01_rstudio.png)<!-- -->
+
+Os quadrantes demarcados são os seguintes:
+
+  - **Editor**: Aqui é onde você programará em R. Na imagem é possível
+    ver que há um arquivo aberto chamado “mpg-plot.R” com algumas linhas
+    de texto.
+
+  - **Console**: Aqui é onde você verá os resultados do seu código. Cada
+    instrução que você passar para o computador será exibida aqui
+    juntamente com o resultado (ou erro) gerado pela sua execução.
+
+  - **Output**: Este é um quadrante bem mais genérico, com várias abas.
+    As de maior importância são:
+    
+      - **Files**: Esta aba mostra os arquivos do diretório onde você se
+        encontra.
+    
+      - **Plots**: Esta aba mostra os gráficos gerados pelo seu
+        programa.
+    
+      - **Help**: Esta aba mostra manuais de como usar as funções.
+
+O último quadrante (na direita superior) é bem menos importante. Nele
+são exibidos os objetos criados no seu programa.
+
+Quando você abrir o RStudio pela primeira vez pode ser que ele esteja
+ligeiramente diferente do retratado na imagem acima, mas isso é normal.
+Na sessão abaixo já veremos como mudar isso.
+
+### O primeiro script
+
+A partir de agora abandonaremos as figuras: sua tarefa é copiar os
+códigos denotados pelo fundo cinza e executá-los\! Nestes tutoriais,
+sempre que você vir uma caixa com o fundo cinza, quer dizer que você
+pode copiar o seu conteúdo e colá-lo no arquivo que você acabou de
+criar.
+
+Com o cursor do seu mouse, selecione o texto colado e aperte a
+combinação **Ctrl+Enter**.
+
+O importante é que você conseguiu criar seu primeiro arquivo com código
+em R (normalmente chamado de script) e executar esse mesmo código para
+obter um gráfico.
+
+### Código e resultado
+
+Antes de executar qualquer comando, o recomendado é criar um arquivo
+para que você possa salvar tudo que escrever. Tecle a combinação
+**Ctrl+Shift+N** para abrir um novo arquivo R e aperte **Ctrl+S** para
+salvá-lo no seu computador (escolha o diretório e o nome que preferir).
+
+Para evitar o uso uma imagem para cada comando que escrevermos, vamos
+usar caixas de código como as que você pode ver logo abaixo. Na primeira
+caixa ficará sempre o código que você escreveu (ou escreverá) no seu
+arquivo; na segunda caixa ficará sempre o resultado proveniente da
+execução do código da caixa anterior (neste caso o número 2). Para
+deixar bem clara a diferença entre código e resultado, os resultados
+serão precedidos em suas caixas por um “\#\>”.
+
+``` r
+1+1
+```
+
+    #> [1] 2
+
+As duas caixas acima indicam que você deve fazer o seguinte:
+
+1.  Escreva `1+1` no seu arquivo (como ele está vazio, você deve fazer
+    isso na primeira linha).
+
+2.  Coloque o cursor do seu mouse sobre essa linha e tecle a combinação
+    **Ctrl+Enter**.
+
+3.  Você deve verificar se no **Console** a expressão que você digitou
+    apareceu em azul em uma linha (precedida de um “\>”) e logo na linha
+    seguinte apareceu o número 2 em preto (precedido de um “\[1\]”).
+
+Lembre-se que o “\#\>” não aparecerá em nenhum lugar para você\! Essa é
+só a forma mais simples de demarcar um resultado em texto.
+
+### Calculadora
+
+A funcionalidade mais básica do R é como uma calculadora. Assim como
+qualquer outra linguagem de programação, é possível escrever expressões
+numéricas e obter seus resultados em R.
+
+Crie uma ou duas linhas em branco no final do seu arquivo com a tecla
+**Enter** e copie o código abaixo. Como cursor na linha, aperte
+**Ctrl+Enter**.
+
+``` r
+(1 + 2) - (3 * 4) / 5
+```
+
+    #> [1] 0.6
+
+Quem diria, não é mesmo? Programar em R é mais fácil do que parece\! As
+expressões aritméticas são escritas em R da mesma forma que faz-se na
+Matemática.
+
+Se quiser, escreva mais algumas linhas de contas para testas as
+capacidades de calculadora do R. Perceba que o R ignora todos os espaços
+e linhas em branco do seu código, então não precisa se preocupar em usar
+algum padrão para escrever as suas expressões.
+
+Caso não tenha ficado claro, a combinação **Ctrl+Enter** é o que “roda”
+ou “executa” um código em R, ou seja, interpreta esse código e obtém o
+seu resultado.
+
+### Objetos
+
+Vendo expressões aritméticas como as da sessão anterior, pode ser que
+você esteja se perguntando como fazer para criar uma variável “x” por
+exemplo. No R variáveis também são chamadas de “objetos” e abaixo você
+pode ver como criar um.
+
+``` r
+a <- 15
+a + 10
+```
+
+    #> [1] 25
+
+Na primeira linha criamos um objeto `a` cujo valor é 15, enquanto na
+segunda fazemos a conta `a + 15`. Perceba que a primeira linha não
+devolve nenhum resultado porque você só está criando um objeto; apenas a
+segunda linha gera uma saída (visível na segunda caixa cinza).
+
+Dica: Para executar somente uma linha basta colocar o cursor nela e
+apertar **Ctrl+Enter**; se você quiser executar várias linhas de uma vez
+só, selecione todas elas com o mouse e somente então tecle a combinação.
+No código acima, o mais simples seria colocar o cursor em qualquer ponto
+da primeira linha e apertar **Ctrl+Enter** duas vezes (pois isso já vai
+rodar ambas as linhas, uma de cada vez).
+
+Os objetos do R podem ser de diversos tipos, mas os que veremos agora
+são números e textos. Para criar um objeto do tipo texto, basta fazê-lo
+receber uma sequência de palavras entre aspas.
+
+``` r
+meu_texto <- "Este é um exemplo de texto"
+meu_texto
+```
+
+    #> [1] "Este é um exemplo de texto"
+
+Na primeira linha do código acima criamos uma variável chamada
+`meu_texto` e, na segunda, pedimos para que o R nos devolva o seu valor.
+
+Agora que sabemos criar variáveis numéricas e de texto, podemos falar
+sobre funções. O conceito de “função” para o R é muito semelhante ao
+matemático: um atalho para a execução de uma série de comandos.
+
+Funções têm entradas e saídas, que você pode nomear como quiser. No
+exemplo abaixo criamos a função `soma_dois`:
+
+``` r
+soma_dois <- function(x) {
+  x + 2
+}
+```
+
+Na primeira linha dizemos que `soma_dois` é uma função que recebe
+somente um argumento (`x`). Entre as chaves podemos colocar quantas
+linhas de código quisermos, sendo que aqui estamos somando o valor de
+`x` com 2.
+
+Depois que você tiver executado o código da função, você pode usá-la a
+vontade. Abaixo você pode ver um código que passa `a` para a função
+(lembre-se que `a` vale 10).
+
+``` r
+soma_dois(a)
+```
+
+    #> [1] 17
+
+### Vetores
+
+Mas o que acontece quando quisermos trabalhar com uma série grande de
+números? Para isso podemos usar vetores, ou seja, objetos que carregam
+consigo um conjunto de valores ao invés de apenas um objeto só.
+
+No R para construir um vetor usamos a função `c` (abreviação de
+“concatenação”). Essa função já vem pronta junto com o R e recebe
+vários valores separados por vírgula, os transformando em apenas um só
+objeto (um vetor).
+
+``` r
+meu_vetor <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+meu_vetor
+```
+
+    #> [1] 1 2 3 4 5 6 7 8 9
+
+Só a título de demonstração, podemos passar vários vetores para `c` de
+modo que ela concatene todos eles. Abaixo temos uma função chamada
+`repetir_quatro` que recebe um argumento `v` e o concatena consigo mesmo
+quatro vezes.
+
+``` r
+repetir_quatro <- function(v) {
+  c(v, v, v, v)
+}
+
+repetir_quatro(meu_vetor)
+```
+
+    #>  [1] 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8
+    #> [36] 9
+
+Obs.: Aqui você pode ver pela primeira vez o propósito daquele “\[1\]”
+que aparecia no início dos resultados dos outros comandos. Caso o seu
+resultado seja um vetor muito grande, cada linha começará com o número
+do primeiro elemento daquela linha. No caso acima, o último 9 é o
+trigésimo sexto elemento do vetor e, portanto, a linha na qual ele
+aparece é precedida por “\[36\]”.
+
+### Mais de uma função
+
+Agora você vai conhecer algumas funções básicas do R ao mesmo tempo em
+que treina o que aprendeu nas sessões passadas. O exemplo abaixo cria
+uma função `media_arredondada` que recebe um vetor de números e um
+objeto de texto; tiramos a média dos números (com a função `mean` do R),
+arredondamos o resultado (com a função `round`) e, por fim, juntamos
+esse resultado com o texto através da função `paste`.
+
+``` r
+media_arredondada <- function(numeros, mensagem) {
+  valor <- round(mean(numeros))
+  paste(mensagem, valor)
+}
+
+vetor_numerico <- c(1, 2, 3, 4, 5, 6)
+objeto_texto <- "O resultado desta função é:"
+
+media_arredondada(vetor_numerico, objeto_texto)
+```
+
+    #> [1] "O resultado desta função é: 4"
+
+Na primeira linha de `media_arredondada` criamos um objeto interno a ela
+chamado `valor` que contém a média arredondada do vetor `numeros`. A
+segunda linha (que retorna o resultado) usa `paste` para colar a
+mensagem no valor.
+
+Perceba que quando colocamos uma função dentro da outra elas são
+avaliadas de dentro para fora como na Matemática. Outro detalhe
+importante é que, se uma função recebe mais de um objeto, eles devem ser
+separados por vírgula.
+
+### Algumas observações importantes
+
+Se você nunca tiver programado na vida, é importante saber que:
+
+  - Letras minúsculas e maiúsculas fazem diferença\! Um objeto chamado
+    `X` ou `Vetor` é diferente de um objeto chamado `x` ou `vetor`.
+
+  - Tudo que acontece dentro de uma função está isolado do que acontece
+    fora. Lá dentro podemos criar objetos com nomes iguais aos de fora
+    sem medo de interferir com seus valores.
+
+  - Em R, o resultado da execução de uma função não é nada mais que o
+    resultado da última linha do seu corpo. Tudo que vier antes será
+    apenas utilizado na computação do resultado e nunca aparecerá no
+    Console.
+
+Abaixo temos um pedaço de código que ilustra todos os pontos acima:
+
+``` r
+exemplo <- function(x, y, z) {
+  X <- y + z
+  y <- x + y
+  x <- x + z
+  x
+}
+
+x <- 2
+y <- 4
+z <- 8
+
+exemplo(x, y, z)
+```
+
+    #> [1] 10
+
+Depois da execução da função `exemplo`, o `x` de fora da função continua
+valendo 2\!
