@@ -52,27 +52,27 @@ o seu código descreverá instruções que nunca serão ambíguas. No fundo voc�
 estar escrevendo um texto que o computador lerá linha a linha, obedecendo as
 instruções que você estiver passando para ele.
 
-Quando eu estiver falando sobre alguma coisa do R, o texto ficará `diferente`.
-Outra coisa que você verá bastante são *scripts*: pedacinhos de código que
-você pode copiar no R do seu computador para obter o mesmo resultado que o
-apresentado no tutorial.
+Quando eu estiver falando de algum objeto do R, o texto ficará `diferente`.
+Você também verá bastantes *scripts*: pedacinhos de código que você pode
+copiar no R do seu computador para obter o mesmo resultado que o apresentado
+no tutorial.
 
 ```{r}
 # Tudo que vem depois de uma cerquilha (#) o computador pula!
 # Assim a gente pode conversar no meio do código.
 
 # Abaixo você está vendo o seu primeiro programa em R.
-# O resultado desse programa é a linha que começa com "#>"
+# O resultado deste programa é a linha que começa com "#>"
 
-x = 1
-y = 2
+x <- 1
+y <- 2
 x + y
 ```
 
 ### O que eu preciso saber?
 
 A princípio você não precisa saber sobre programação para ler estes tutoriais!
-Mas duas coisas ajudam: noções de como programar em outra linguagem (VBA,
+Mas podem te ajudar: noções de como programar em outra linguagem (VBA,
 Python, Fortran, C, ...) e inglês. Infelizmente todos os comandos do R têm
 nomes em inglês e isso é algo que não pode ser mudado. Conforme os tutoriais
 avançarem serão fornecidas traduções dos nomes de todos os comandos, mas
