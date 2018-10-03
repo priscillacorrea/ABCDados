@@ -174,7 +174,7 @@ sobre funções. O conceito de “função” para o R é muito semelhante ao
 matemático: um atalho para a execução de uma série de comandos.
 
 Funções têm entradas e saídas, que você pode nomear como quiser. No
-exemplo abaixo criamos a função `soma_dois`:
+exemplo abaixo criamos a função `soma_dois()`:
 
 ``` r
 soma_dois <- function(x) {
@@ -182,7 +182,7 @@ soma_dois <- function(x) {
 }
 ```
 
-Na primeira linha dizemos que `soma_dois` é uma função que recebe
+Na primeira linha dizemos que `soma_dois()` é uma função que recebe
 somente um argumento (`x`). Entre as chaves podemos colocar quantas
 linhas de código quisermos, sendo que aqui estamos somando o valor de
 `x` com 2.
@@ -203,7 +203,7 @@ Mas o que acontece quando quisermos trabalhar com uma série grande de
 números? Para isso podemos usar vetores, ou seja, objetos que carregam
 consigo um conjunto de valores ao invés de apenas um objeto só.
 
-No R para construir um vetor usamos a função `c` (abreviação de
+No R para construir um vetor usamos a função `c()` (abreviação de
 “concatenação”). Essa função já vem pronta junto com o R e recebe
 vários valores separados por vírgula, os transformando em apenas um só
 objeto (um vetor).
@@ -215,10 +215,10 @@ meu_vetor
 
     #> [1] 1 2 3 4 5 6 7 8 9
 
-Só a título de demonstração, podemos passar vários vetores para `c` de
+Só a título de demonstração, podemos passar vários vetores para `c()` de
 modo que ela concatene todos eles. Abaixo temos uma função chamada
-`repetir_quatro` que recebe um argumento `v` e o concatena consigo mesmo
-quatro vezes.
+`repetir_quatro()` que recebe um argumento `v` e o concatena consigo
+mesmo quatro vezes.
 
 ``` r
 repetir_quatro <- function(v) {
@@ -242,10 +242,10 @@ aparece é precedida por “\[36\]”.
 
 Agora você vai conhecer algumas funções básicas do R ao mesmo tempo em
 que treina o que aprendeu nas sessões passadas. O exemplo abaixo cria
-uma função `media_arredondada` que recebe um vetor de números e um
-objeto de texto; tiramos a média dos números (com a função `mean` do R),
-arredondamos o resultado (com a função `round`) e, por fim, juntamos
-esse resultado com o texto através da função `paste`.
+uma função `media_arredondada()` que recebe um vetor de números e um
+objeto de texto; tiramos a média dos números (com a função `mean()` do
+R), arredondamos o resultado (com a função `round()`) e, por fim,
+juntamos esse resultado com o texto através da função `paste()`.
 
 ``` r
 media_arredondada <- function(numeros, mensagem) {
@@ -261,9 +261,9 @@ media_arredondada(vetor_numerico, objeto_texto)
 
     #> [1] "O resultado desta função é: 4"
 
-Na primeira linha de `media_arredondada` criamos um objeto interno a ela
-chamado `valor` que contém a média arredondada do vetor `numeros`. A
-segunda linha (que retorna o resultado) usa `paste` para colar a
+Na primeira linha de `media_arredondada()` criamos um objeto interno a
+ela chamado `valor` que contém a média arredondada do vetor `numeros`. A
+segunda linha (que retorna o resultado) usa `paste()` para colar a
 mensagem no valor.
 
 Perceba que quando colocamos uma função dentro da outra elas são
@@ -306,5 +306,5 @@ exemplo(x, y, z)
 
     #> [1] 10
 
-Depois da execução da função `exemplo`, o `x` de fora da função continua
-valendo 2\!
+Depois da execução da função `exemplo()`, o `x` de fora da função
+continua valendo 2\!
