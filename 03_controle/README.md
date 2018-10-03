@@ -95,8 +95,8 @@ if (numero > 0) {
 
     #> [1] "O número é negativo"
 
-Teste if-else acima com outros números para ver quais são as saídas\! O
-código pode parecer um pouco apertado, mas no RStudio todas as
+Teste o if-else acima com outros números para ver quais são as saídas\!
+O código pode parecer um pouco apertado, mas no RStudio todas as
 palavras-chave ficam em destaque, então basta lembrar de passar
 condições entre parênteses para todo `if` e todo `else if`.
 
@@ -150,15 +150,15 @@ ser fontes de dúvida.
 | x == y        | x é igual a y?                               |
 | x \!= y       | x é diferente de y?                          |
 | \!(op1)       | O contrário da operação 1 é verdadeiro?      |
-| (op1) | (op2) | A operação 1 ou a operação 2 é verdadeira?   |
+| (op1) ｜ (op2) | A operação 1 ou a operação 2 é verdadeira?   |
 | (op1) & (op2) | A operação 1 e a operação 2 são verdadeiras? |
 
 Preste bastante atenção no teste de igualdade\! É necessário dois
 símbolos de igual (`==`) para verificar se dois objetos são iguais.
 
-A operação de “ou” também é um pouco delicada. Ela será atendida se
-apenas `op1` for atendida, se apenas `op2` for atendida ou se tanto
-`op1` quanto `op2` forem atendidas.
+A operação de “ou” (barra vertical) também é um pouco delicada. Ela será
+atendida se apenas `op1` for atendida, se apenas `op2` for atendida ou
+se tanto `op1` quanto `op2` forem atendidas.
 
 ### Enquanto
 
@@ -203,7 +203,7 @@ numeros
 
     #> [1] 1 2 3 4 5
 
-Obs.: A síntaxe `x:y` não passa de um atalho para `c(x, x+1, x+2, ...,
+Obs.: A sintaxe `x:y` não passa de um atalho para `c(x, x+1, x+2, ...,
 y)`. No comando acima, `numeros` é declarado como `numeros <-
 c(5, 6, 7, 8, 9)`.
 
@@ -243,7 +243,7 @@ seq_along(numeros)
     #> [1] 1 2 3 4 5
 
 Essencialmente ela retorna o índice de cada elemento do objeto que ela
-recebe (justamete os valores que `i` assumia no código anterior). Com o
+recebe (justamente os valores que `i` assumia no código anterior). Com o
 `for` podemos usar essa função para já declarar todos os valores de `i`
 de forma muito mais simples\!
 
