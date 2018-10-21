@@ -1,0 +1,178 @@
+---
+title: "Tutorial 05: Limpeza"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>")
+```
+
+```{r, include=FALSE, cache=TRUE, message=FALSE}
+dicionario <- readxl::read_xlsx("../04_importacao/README_files/dicionarior34.xlsx")
+cadastro <- readr::read_csv2(
+  "../04_importacao/README_files/escolasr34dez2017.csv",
+  locale = readr::locale(encoding = "ISO-8859-1"))
+```
+
+### Sobre este tutorial
+
+Depois que você tiver uma tabela importada no R começa a parte difícil do
+trabalho: limpar os dados. Neste tutorial você aprenderá algumas funções úteis
+para filtrar linhas e colunas de uma base de dados, permitindo que você
+selecione apenas as informações com as quais você irá trabalhar.
+
+Neste ponto assume-se que você já realizou o tutorial 04 sobre importação e
+tem no seu ambiente os objetos `dicionario` e `cadastro`, pois aqui eles
+serão utilizados com frequência.
+
+### Selecionando colunas
+
+A limpeza mais simples que você pode fazer em uma tabela é selecionar um
+subconjunto de colunas. Aqui você utilizará uma função chamada `select()`
+("selecionar") e algumas auxiliares chamadas `starts_with()` ("começa com")
+e `contains()` ("contém"). Só não se esqueça de carregar o `tidyverse`!
+
+```{r, message=FALSE}
+library(tidyverse)
+
+# Selecionando duas colunas por nome
+select(cadastro, NOMESC, DATABASE)
+```
+
+A função `select()` recebe como primeiro argumento uma tabela e, depois disso,
+todas as colunas que você quiser selecionar. Se você precisar selecionar um
+número muito grande de colunas, há alguns atalhos mostrados a seguir. Não será
+exibido o resultado de cada comando porque isso deixaria o tutorial
+desnecessariamente comprido, então copie toda a caixa abaixo e execute cada
+linha para ver o que acontece!
+
+```{r, eval=FALSE}
+# Selecionar colunas número 1, 3 e 6
+select(cadastro, 1, 3, 6)
+
+# Selecionar as colunas de 1 a 6
+select(cadastro, 1:6)
+
+# Selecionar as colunas de DRE a DIRETORIA
+select(cadastro, DRE:DIRETORIA)
+
+# Selecionar as colunas de DRE a DIRETORIA e ENDERECO
+select(cadastro, DRE:DIRETORIA, ENDERECO)
+
+# Selecionar as colunas cujo nome começa com "T2"
+select(cadastro, starts_with("T2"))
+
+# Selecionar as colunas cujo nome contém com "TURNO"
+select(cadastro, contains("TURNO"))
+
+# Descartar a coluna FAX
+select(cadastro, -FAX)
+
+# Selecionar as colunas 1 a 6, exceto pela 4
+select(cadastro, 1:6, -4)
+
+# Selecionar as colunas de DRE a DIRETORIA, exceto pela CODESC
+select(cadastro, DRE:DIRETORIA, -CODESC)
+```
+
+### Filtrando linhas
+
+Outra limpeza que você pode querer fazer em uma base é remover linhas
+indesejadas. Às vezes você sabe que uma coluna não pode ter um valor pequeno
+demais, que uma coluna não pode ter um certo valor específico, e assim por
+diante. Para fazer isso vamos utilizar a função `filter()` ("filtrar").
+
+```{r}
+# Filtrar escolas da Diretoria Regional abreviada por "FO"
+filter(cadastro, DRE == "FO")
+```
+
+Note que a saída da função agora só tem 406 linhas! Isso é porque esse comando
+mantém apenas as linhas nas quais a coluna `DRE` possui valor igual a "FO".
+
+Obs.: O comando acima não contém nenhum erro de digitação. Para verificar se
+duas coisas são iguais em R usamos dois símbolos de igualdade (`==`)! Você verá
+mais sobre isso na seção a seguir e no tutorial sobre controle.
+
+Obs. 2: Perceba que quando você usa o nome de uma coluna dentro de `filter()`
+não se colocam aspas em volta dele, mas as aspas são necessárias quando trata-se
+do valor verificado. Isso é porque a coluna `DRE` contém textos, então, para
+verificar se a quela coluna é igual a um valor, este valor precisa ser um texto.
+
+Como com a `select()`, abaixo são apresentados alguns comandos exemplos para
+`filter()`. Copie a caixa abaixo no seu R e veja o que eles fazem!
+
+```{r, eval=FALSE}
+# Filtrar escolas com DRE diferente de "FO"
+filter(cadastro, DRE != "FO")
+
+# Filtrar escolas com CODINEP menor que 35000000
+filter(cadastro, CODINEP < 35000000)
+
+# Filtrar escolas com CODINEP menor que 35000000 e DRE igual a "FO"
+filter(cadastro, CODINEP < 35000000, DRE == "FO")
+
+# Filtrar escolas com DRE dentre "FO", "G" e "IQ"
+filter(cadastro, DRE %in% c("FO", "G", "IQ"))
+
+# Filtrar escolas sem informação na coluna CEU
+filter(cadastro, is.na(CEU))
+
+# Filtrar escolas com informação na coluna CEU
+filter(cadastro, !is.na(CEU))
+```
+
+### Operadores lógicos
+
+Abaixo você vai encontrar uma breve lista com todos os operadores lógicos
+que podem ser utilizados dentro da função `filter()`. A maior parte deles
+é apenas um comparador matemático, mas alguns podem ser fontes de dúvida.
+
+```{r, echo = FALSE}
+knitr::kable(tibble::tribble(
+  ~Operação, ~Significado,
+  "x < y", "x é menor que y?",
+  "x > y", "x é maior que y?",
+  "x >= y", "x é maior ou igual a y?",
+  "x <= y", "x é menor ou igual a y?",
+  "x == y", "x é igual a y?",
+  "x != y", "x é diferente de y?",
+  "x %in% y", "x é um elemento de y?",
+  "is.na(x)", "x é vazio/omisso?",
+  "!op1", "O contrário da operação 1 é verdadeiro?",
+  "(op1) \uFF5C (op2)", "A operação 1 ou a operação 2 é verdadeira?",
+  "(op1) & (op2)", "A operação 1 e a operação 2 são verdadeiras?"))
+```
+
+A operação de "ou" (barra vertical) é um pouco delicada e merece atenção
+especial. Ela será atendida se apenas `op1` for atendida, se apenas `op2`
+for atendida ou se tanto `op1` quanto `op2` forem atendidas.
+
+Diferentemente das outras, `is.na()` não é exatamente um operador lógico, mas
+sim uma função que lida com um tipo de objeto particular ao R: `NA` (abreviação
+de "não disponível"). Se você abrir `cadastro` com a função `View()` e observar
+a coluna `CEU`, você notará que grande parte das linhas contém as letras "NA"
+em itálico e com uma cor diferente; isso é a forma do R de dizer que não há
+nada naquela célula, equivalente a uma célula absolutamente vazia no Excel.
+
+### Ordenando colunas
+
+A última função que você aprenderá neste tutorial é `arrange()` ("organizar").
+Ela recebe uma tabela e uma série de colunas, ordenando-as uma a uma exatamente
+da mesma forma que acontece no SQL por exemplo. Com `desc()` também é possível
+ordenar as colunas de forma decrescente.
+
+```{r}
+# Ordenar escolas por ordem alfabética de DRE
+arrange(cadastro, DRE)
+```
+
+Abaixo seguem mais alguns exemplos para você testar no seu R:
+
+```{r, eval=FALSE}
+# Ordenar escolas por ordem alfabética de DRE e NOMESC
+arrange(cadastro, DRE, NOMESC)
+
+# Ordenar escolas por ordem anti-alfabética de TIPOESC
+arrange(cadastro, desc(TIPOESC))
+```
