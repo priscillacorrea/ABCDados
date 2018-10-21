@@ -1,0 +1,225 @@
+---
+title: "Tutorial 06: Transformação"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>")
+```
+
+```{r, include=FALSE, cache=TRUE, message=FALSE}
+dicionario <- readxl::read_xlsx("../04_importacao/README_files/dicionarior34.xlsx")
+cadastro <- readr::read_csv2(
+  "../04_importacao/README_files/escolasr34dez2017.csv",
+  locale = readr::locale(encoding = "ISO-8859-1"))
+```
+
+### Sobre este tutorial
+
+Tendo concluído o tutorial passado, o próximo passo que você deve dar é
+transformar colunas. Transformação é um termo genérico utilizado para descrever
+qualquer operação que crie novas colunas ou modifique o significado de uma
+coluna já existente. Neste tutorial você aprenderá sobre as funções `mutate()`,
+`group_by()`, `summarise()` e mais algumas.
+
+Neste ponto assume-se que você já realizou o tutorial 04 sobre importação e
+tem no seu ambiente os objetos `dicionario` e `cadastro`, pois aqui eles
+serão utilizados com frequência.
+
+### Modificar colunas
+
+Provavelmente a função que você mais utilizará quando estiver programando em
+R se chama `mutate()` ("modificar"). Ela é extremamtente útil, pois permite
+alterar colunas já existentes e até criar colunas novas com um só comando.
+
+Assim como as funções que você viu no tutorial passado, a `mutate()` recebe
+como primeiro argumento uma tabela e depois quantas expressões você quiser.
+Estas expressões entretanto precisam ter um formato um tanto quanto específico:
+a primeira parte deve sempre ser o nome de uma coluna (nova ou antiga), um
+símbolo de igualdade e, então, uma expressão ou cálculo que retorne os valores
+da coluna especificada.
+
+Antes de demonstrar o funcionamento desta função, abra `cadastro` com `View()`
+e examine as coluna `LATITUDE` e `LONGITUDE`. Normalmente latitudes e
+longitudes são valores pequenos e, para a cidade de São Paulo, deveriam ser
+algo em torno de -23 para latitude e -46 para longitude. Quando a tabela foi
+preenchida, não foi colocado o separador da parte decimal!
+
+O comando abaixo usa `mutate()` para dividir latitudes e longitudes por 
+1000000 de modo que os valores fiquem corretos.
+
+```{r, message=FALSE}
+library(tidyverse)
+
+mutate(cadastro, LATITUDE = LATITUDE/1000000, LONGITUDE = LONGITUDE/1000000)
+```
+
+Infelizmente as colunas nas quais estamos interessados são umas das últimas e
+portanto não aparecem na saída do comando. Não seria ótimo se você pudesse
+aplicar um `select()` logo depois do `mutate()` para poder ver somente as
+colunas que foram modificadas? No comando abaixo você será apresentado ao
+operador mais famoso do R: o *pipe* ("cano")!
+
+```{r}
+cadastro %>%
+  mutate(LATITUDE = LATITUDE/1000000, LONGITUDE = LONGITUDE/1000000) %>%
+  select(LATITUDE, LONGITUDE)
+```
+
+Para escrever o *pipe* com facilidade, tecle **Ctrl + Shift + M** no seu
+teclado. O que este inocente operador está fazendo facilita muito o seu
+trabalho na hora de analisar dados, então lembre-se bem dele! Essencialmente,
+ele passa o que está à esquerda dele como entrada da função que está na linha
+de baixo; no comando acima, portanto, passamos `cadastro` como tabela para
+a `mutate()` e, então, a tabela resultante desta transformação como entrada
+para a `select()`.
+
+Este tipo de notação denominada *pipeline* ("encanamento") é extremamente
+útil porque permite transformar uma tarefa de tratamento de dados em algo
+parecido com uma receita de bolo. Note que para executar o *pipeline* inteiro
+basta colocar o cursor na primeira linha e teclar **Ctrl + Enter** apenas uma
+vez.
+
+Veja agora mais um exemplo de transformação com `mutate()`:
+
+```{r}
+cadastro %>%
+  mutate(CODDIST = as.numeric(CODDIST)) %>%
+  select(CODDIST)
+```
+
+Antes da execução do comando acima, a coluna `CODDIST` era uma coluna de 
+texto, algo que nem sempre é apropriado para um código numérico. Com a função
+`as.numeric()` ("como numérico") este problema é resolvido. Agora é inclusive
+possível usar a funcionalidade de calculadora do R para fazer matemática com
+este código:
+
+```{r}
+cadastro %>%
+  mutate(CODDIST = as.numeric(CODDIST), NOVOCOD = (CODDIST+1)*2) %>%
+  select(NOVOCOD)
+```
+
+O comando acima cria uma nova coluna (`NOVOCOD`) que é `CODDIST` mais 1 
+dividido por 2.
+
+Se você rodar o comando `View(dicionario)` e ler a descrição da coluna
+`T2D3D` você notará que seria muito melhor que seu valor fosse 2 ou 3 e não
+"2D" ou "3D". O comando abaixo usa a função `if_else()` ("se e senão") para
+transformar todo "2D" em 2 e o resto ("3D" no caso) em 3:
+
+```{r}
+cadastro %>%
+  mutate(T2D3D = if_else(T2D3D == "2D", 2, 3)) %>%
+  select(T2D3D)
+```
+
+### Resumir colunas
+
+Uma outra tarefa muito comum ao trabalhar com bases de dados, é transformar
+uma coluna inteira em um valor. No SQL esse tipo de transformação é feita com
+o `GRUOP BY`, mas no R geralmente são necessárias duas funções: `group_by()`
+("agrupar por") e `summarise()` ("resumir").
+
+Se você quiser extrair medidas resumo de uma coluna inteira, basta usar
+`summarise()`. Ela recebe uma tabela e expressões que recebam uma lista de
+valores mas retornem apenas um valor só (como média, mediana, soma, etc.).
+
+```{r}
+summarise(cadastro, MEDIALAT = mean(LATITUDE), MEDIALON = mean(LONGITUDE))
+```
+
+Perceba que o comando acima returnou uma nova tabela com uma linha só, mas
+os valores desta linha são `NA` (omissos). Isso acontece porque o R não sabe
+tirar a média de uma coluna que possua valores omissos (afinal, quanto é
+`1 + NA`?). Para resolver isso, usamos o argumento `na.rm` ("remover NA")
+da função `mean()`; se colocarmos este argumento valendo `TRUE` ("verdade"),
+então ela automaticamente removerá os valores omissos antes de tirar a média.
+
+```{r}
+# Lembre-se que quebrar as linhas não faz diferença
+summarise(cadastro,
+          MEDIALAT = mean(LATITUDE, na.rm = TRUE),
+          MEDIALON = mean(LONGITUDE, na.rm = TRUE))
+```
+
+O mais comum, no entando, é agrupar a tabela por uma ou mais colnas e somente
+então extrair medidas resumo de outras colunas. O comando abaixo agrupa a
+tabela por `DRE` e depois conta quantas escolas estão com `SITUACAO` "Ativa".
+
+```{r}
+cadastro %>%
+  group_by(DRE) %>%
+  summarise(ATIVAS = sum(SITUACAO == "Ativa"))
+```
+
+### Uma análise completa
+
+Suponha que você recebeu uma demanda: contar o número de escolas ativas nos
+DREs "FO", "IQ" e "SA" e determinar quantos porcento das escolas de cada DRE 
+este número representa. Depois de criada uma tabela com estas especificações,
+você deve salvá-la em um formato que pode ser enviado a outra pessoa.
+
+Usando as funções que foram abordas no tutorial passado e neste, fazer isso
+com o R se torna uma tarefa bem mais simples do que em outras linguagens.
+
+```{r}
+demanda <- cadastro %>%
+  filter(DRE %in% c("FO", "IQ", "SA")) %>%
+  group_by(DRE) %>%
+  summarise(ATIVAS = sum(SITUACAO == "Ativa"), PRECATIVAS = ATIVAS/n())
+
+demanda
+```
+
+Obs.: A função `n()` só pode ser utilizada dentro de um `summarise()` porque
+ela retorna o número de linhas dentro de cada grupo (ou seja, no comando
+acima o número de escolas ativas em cada DRE é dividido pelo número total de
+escolas naquele DRE).
+
+Agora para salvar basta usar as irmãs das funções `read_***()` do tutorial
+passado: as `write_***()` ("escrever ***"). Neste caso você irá salvar a nova
+tabela `demanda` em um CSV:
+
+```{r, eval=FALSE}
+# O caminho abaixo deve ser o nome do arquivo onde salvar a tabela
+write_csv(demanda, "Documents/demanda.csv")
+```
+
+### Funções bônus
+
+Outras funções que podem ser úteis de se aprender são o par `gather()` 
+("reunir") e `spread()` ("espalhar"). A primeira transforma uma coleção de
+colunas em uma coluna "chave" e outra "valor", enquanto a segunda faz a 
+operação inversa.
+
+Observe as colunas `T2D3D`, `T2D3D16` e assim por diante. No fundo elas
+expressam a mesma coisa mas em anos diferentes; se você quisesse analisar
+esse conjunto de colunas como um todo seria muito difícil fazê-lo com
+tantas colunas separadas.
+
+Para isso o comando abaixo utiliza `gather()`. Ele cria uma nova coluna
+`ANO` com os nomes as variáveis tombados e uma coluna `TURNOS` com os
+valores correspondentes daquelas variáveis antes de serem tomabadas (note
+que isso deixa a tabela bem mais alta).
+
+```{r}
+cadastro %>%
+  select(CODESC, starts_with("T2")) %>%
+  gather("ANO", "TURNOS", starts_with("T2")) %>%
+  arrange(CODESC)
+```
+
+Obs.: O terceiro argumento de `gather()` deve ser um seletor de colunas 
+escrito na mesma forma que faz-se com `select()`.
+
+Agora para demonstrar a operação inversa, você pode colocar `spread()` ao
+final do *pipeline* acima.
+
+```{r}
+cadastro %>%
+  select(CODESC, starts_with("T2")) %>%
+  gather("ANO", "TURNOS", starts_with("T2")) %>%
+  arrange(CODESC) %>%
+  spread(ANO, TURNOS)
+```
