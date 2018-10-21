@@ -15,10 +15,6 @@ Na figura abaixo você verá o RStudio aberto com algum código já
 executado. Não se preocupe com os detalhes, o objetivo dessa imagem é só
 ilustrar o que cada parte da interface faz.
 
-``` r
-knitr::include_graphics("README_files/01_rstudio.png")
-```
-
 ![](README_files/01_rstudio.png)<!-- -->
 
 Os quadrantes demarcados são os seguintes:
