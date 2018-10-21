@@ -29,7 +29,7 @@ serão utilizados com frequência.
 ### Modificar colunas
 
 Provavelmente a função que você mais utilizará quando estiver programando em
-R se chama `mutate()` ("modificar"). Ela é extremamtente útil, pois permite
+R se chama `mutate()` ("modificar"). Ela é extremamente útil, pois permite
 alterar colunas já existentes e até criar colunas novas com um só comando.
 
 Assim como as funções que você viu no tutorial passado, a `mutate()` recebe
@@ -129,7 +129,7 @@ valores mas retornem apenas um valor só (como média, mediana, soma, etc.).
 summarise(cadastro, MEDIALAT = mean(LATITUDE), MEDIALON = mean(LONGITUDE))
 ```
 
-Perceba que o comando acima returnou uma nova tabela com uma linha só, mas
+Perceba que o comando acima retornou uma nova tabela com uma linha só, mas
 os valores desta linha são `NA` (omissos). Isso acontece porque o R não sabe
 tirar a média de uma coluna que possua valores omissos (afinal, quanto é
 `1 + NA`?). Para resolver isso, usamos o argumento `na.rm` ("remover NA")
@@ -143,7 +143,7 @@ summarise(cadastro,
           MEDIALON = mean(LONGITUDE, na.rm = TRUE))
 ```
 
-O mais comum, no entando, é agrupar a tabela por uma ou mais colnas e somente
+O mais comum, no entanto, é agrupar a tabela por uma ou mais colunas e somente
 então extrair medidas resumo de outras colunas. O comando abaixo agrupa a
 tabela por `DRE` e depois conta quantas escolas estão com `SITUACAO` "Ativa".
 
@@ -200,7 +200,7 @@ tantas colunas separadas.
 
 Para isso o comando abaixo utiliza `gather()`. Ele cria uma nova coluna
 `ANO` com os nomes as variáveis tombados e uma coluna `TURNOS` com os
-valores correspondentes daquelas variáveis antes de serem tomabadas (note
+valores correspondentes daquelas variáveis antes de serem tombadas (note
 que isso deixa a tabela bem mais alta).
 
 ```{r}

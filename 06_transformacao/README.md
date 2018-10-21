@@ -16,7 +16,7 @@ pois aqui eles serão utilizados com frequência.
 ### Modificar colunas
 
 Provavelmente a função que você mais utilizará quando estiver
-programando em R se chama `mutate()` (“modificar”). Ela é extremamtente
+programando em R se chama `mutate()` (“modificar”). Ela é extremamente
 útil, pois permite alterar colunas já existentes e até criar colunas
 novas com um só comando.
 
@@ -212,7 +212,7 @@ summarise(cadastro, MEDIALAT = mean(LATITUDE), MEDIALON = mean(LONGITUDE))
     #>      <dbl>    <dbl>
     #> 1       NA       NA
 
-Perceba que o comando acima returnou uma nova tabela com uma linha só,
+Perceba que o comando acima retornou uma nova tabela com uma linha só,
 mas os valores desta linha são `NA` (omissos). Isso acontece porque o R
 não sabe tirar a média de uma coluna que possua valores omissos (afinal,
 quanto é `1 + NA`?). Para resolver isso, usamos o argumento `na.rm`
@@ -232,7 +232,7 @@ summarise(cadastro,
     #>        <dbl>      <dbl>
     #> 1 -23573537. -46604085.
 
-O mais comum, no entando, é agrupar a tabela por uma ou mais colnas e
+O mais comum, no entanto, é agrupar a tabela por uma ou mais colunas e
 somente então extrair medidas resumo de outras colunas. O comando abaixo
 agrupa a tabela por `DRE` e depois conta quantas escolas estão com
 `SITUACAO` “Ativa”.
@@ -317,8 +317,8 @@ fazê-lo com tantas colunas separadas.
 
 Para isso o comando abaixo utiliza `gather()`. Ele cria uma nova coluna
 `ANO` com os nomes as variáveis tombados e uma coluna `TURNOS` com os
-valores correspondentes daquelas variáveis antes de serem tomabadas
-(note que isso deixa a tabela bem mais alta).
+valores correspondentes daquelas variáveis antes de serem tombadas (note
+que isso deixa a tabela bem mais alta).
 
 ``` r
 cadastro %>%
