@@ -10,13 +10,14 @@ tangencialmente também serão apresentados operadores lógicos.
 
 ### Se/senão
 
-Lembrando o que foi tratado no tutorial anterior, você pode estar se
+Lembrando o que foi tratado nos tutoriais anteriores, você pode estar se
 perguntando como fazer programas mais complexos. Até agora, você
-essencialmente só foi apresentado a funções e variáveis, mas por
-enquanto o seu programa não passa de uma sequência linear de comandos
-que o computador executa um a um. É verdade que com funções podemos
-reutilizar algum código várias vezes sem reescrevê-lo, entretanto isso
-não faz com que o programa em si deixe de ser sequencial.
+essencialmente só foi apresentado a funções, variáveis e *pipelines*,
+mas por enquanto o seu programa não passa de uma sequência linear de
+comandos que o computador executa um a um. É verdade que com funções
+podemos reutilizar algum código várias vezes sem reescrevê-lo,
+entretanto isso não faz com que o programa em si deixe de ser
+sequencial.
 
 Uma ferramenta que você encontrará em toda linguagem de programação é a
 dupla “se-senão” (em inglês “*if-else*”). Com essas palavras-chave, você
@@ -131,15 +132,14 @@ não é necessário; neste caso, não há um *último comando* por causa do
 
 Obs. 2: Perceba que essa função mostra duas saídas no Console\! Isso é
 perfeitamente possível com o `print()`, mas é importante notar que
-somente *apenas um valor* pode ser retornado apesar de vários poderem
-ser impressos.
+somente um valor pode ser retornado apesar de vários poderem ser
+impressos.
 
 ### Operadores lógicos
 
-Abaixo você vai encontrar uma breve lista com todos os operadores
-lógicos que podem ser utilizados dentro das condições dos if-else. A
-maior parte deles é apenas um comparador matemático, mas alguns podem
-ser fontes de dúvida.
+Relembrando o tutorial de limpeza de dados, abaixo estão os operadores
+lógicos mais comuns. Você pode utilizá-los dentro da `filter()` ou de
+qualquer if-else.
 
 | Operação      | Significado                                  |
 | :------------ | :------------------------------------------- |
@@ -149,16 +149,14 @@ ser fontes de dúvida.
 | x \<= y       | x é menor ou igual a y?                      |
 | x == y        | x é igual a y?                               |
 | x \!= y       | x é diferente de y?                          |
-| \!(op1)       | O contrário da operação 1 é verdadeiro?      |
+| x %in% y      | x é um elemento de y?                        |
+| is.na(x)      | x é vazio/omisso?                            |
+| \!op1         | O contrário da operação 1 é verdadeiro?      |
 | (op1) ｜ (op2) | A operação 1 ou a operação 2 é verdadeira?   |
 | (op1) & (op2) | A operação 1 e a operação 2 são verdadeiras? |
 
 Preste bastante atenção no teste de igualdade\! É necessário dois
 símbolos de igual (`==`) para verificar se dois objetos são iguais.
-
-A operação de “ou” (barra vertical) também é um pouco delicada. Ela será
-atendida se apenas `op1` for atendida, se apenas `op2` for atendida ou
-se tanto `op1` quanto `op2` forem atendidas.
 
 ### Enquanto
 
@@ -185,9 +183,9 @@ No comando acima, somamos 5 a `numero` enquanto `vezes` for maior que 0;
 a cada soma, também subtraímos 1 de `vezes`. Em outras palavras,
 implementamos um algoritmo para multiplicar 5 por 6\!
 
-Também podemos usar loops para percorrer um vetor. Consulte o tutorial
-anterior caso você precise refrescar a sua memória, mas um vetor não
-passa de um objeto que contém vários elementos dentro de si.
+Também podemos usar loops para percorrer um vetor. Consulte o tutorial 2
+caso você precise refrescar a sua memória, mas um vetor não passa de um
+objeto que contém vários elementos dentro de si.
 
 ``` r
 numeros <- 5:9
