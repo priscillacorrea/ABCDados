@@ -33,6 +33,8 @@ entender a distribuição da coluna que representa o número de vagas
 oferecidas em cada turma (`VAGOFER`):
 
 ``` r
+library(tidyverse)
+
 ggplot(turmas, aes(x = VAGOFER)) +
   geom_histogram()
 ```

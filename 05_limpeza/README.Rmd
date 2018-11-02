@@ -62,7 +62,7 @@ select(cadastro, DRE:DIRETORIA, ENDERECO)
 # Selecionar as colunas cujo nome começa com "T2"
 select(cadastro, starts_with("T2"))
 
-# Selecionar as colunas cujo nome contém com "TURNO"
+# Selecionar as colunas cujo nome contém "TURNO"
 select(cadastro, contains("TURNO"))
 
 # Descartar a coluna FAX
