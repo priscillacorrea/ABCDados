@@ -9,7 +9,7 @@ descrever qualquer operação que crie novas colunas ou modifique o
 significado de uma coluna já existente. Neste tutorial você aprenderá
 sobre as funções `mutate()`, `group_by()`, `summarise()` e mais algumas.
 
-Neste ponto assume-se que você já realizou o tutorial 04 sobre
+Neste ponto assume-se que você já realizou o Tutorial 04 sobre
 importação e tem no seu ambiente os objetos `dicionario` e `cadastro`,
 pois aqui eles serão utilizados com frequência.
 
@@ -22,7 +22,7 @@ novas com um só comando.
 
 Assim como as funções que você viu no tutorial passado, a `mutate()`
 recebe como primeiro argumento uma tabela e depois quantas expressões
-você quiser. Estas expressões entretanto precisam ter um formato um
+você quiser. Entretanto, estas expressões precisam ter um formato um
 tanto quanto específico: a primeira parte deve sempre ser o nome de uma
 coluna (nova ou antiga), um símbolo de igualdade e, então, uma expressão
 ou cálculo que retorne os valores da coluna especificada.
@@ -69,7 +69,7 @@ mutate(cadastro, LATITUDE = LATITUDE/1000000, LONGITUDE = LONGITUDE/1000000)
     #> #   DTURNOS09 <chr>, DTURNOS08 <chr>, DTURNOS07 <chr>, LATITUDE <dbl>,
     #> #   LONGITUDE <dbl>, REDE <chr>, DATABASE <chr>
 
-Infelizmente as colunas nas quais estamos interessados são umas das
+Infelizmente, as colunas nas quais estamos interessados são umas das
 últimas e portanto não aparecem na saída do comando. Não seria ótimo se
 você pudesse aplicar um `select()` logo depois do `mutate()` para poder
 ver somente as colunas que foram modificadas? No comando abaixo você
@@ -97,7 +97,7 @@ cadastro %>%
     #> # ... with 6,868 more rows
 
 Para escrever o *pipe* com facilidade, tecle **Ctrl + Shift + M** no seu
-teclado. O que este inocente operador está fazendo facilita muito o seu
+teclado. O que este operador está fazendo facilita muito o seu
 trabalho na hora de analisar dados, então lembre-se bem dele\!
 Essencialmente, ele passa o que está à esquerda dele como entrada da
 função que está na linha de baixo; no comando acima, portanto, passamos
@@ -194,7 +194,7 @@ cadastro %>%
 
 Uma outra tarefa muito comum ao trabalhar com bases de dados, é
 transformar uma coluna inteira em um valor. No SQL esse tipo de
-transformação é feita com o `GRUOP BY`, mas no R geralmente são
+transformação é feita com o `GROUPP BY`, mas no R geralmente são
 necessárias duas funções: `group_by()` (“agrupar por”) e `summarise()`
 (“resumir”).
 
@@ -277,13 +277,13 @@ linguagens.
 demanda <- cadastro %>%
   filter(DRE %in% c("FO", "IQ", "SA")) %>%
   group_by(DRE) %>%
-  summarise(ATIVAS = sum(SITUACAO == "Ativa"), PRECATIVAS = ATIVAS/n())
+  summarise(ATIVAS = sum(SITUACAO == "Ativa"), PERC_ATIVAS = ATIVAS/n())
 
 demanda
 ```
 
     #> # A tibble: 3 x 3
-    #>   DRE   ATIVAS PRECATIVAS
+    #>   DRE   ATIVAS PERC_ATIVAS
     #>   <chr>  <int>      <dbl>
     #> 1 FO       383      0.943
     #> 2 IQ       395      0.975
