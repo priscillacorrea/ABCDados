@@ -9,7 +9,7 @@ funções úteis para filtrar linhas e colunas de uma base de dados,
 permitindo que você selecione apenas as informações com as quais você
 irá trabalhar.
 
-Neste ponto assume-se que você já realizou o tutorial 04 sobre
+Neste ponto, assume-se que você já realizou o tutorial 04 sobre
 importação e tem no seu ambiente os objetos `dicionario` e `cadastro`,
 pois aqui eles serão utilizados com frequência.
 
@@ -18,7 +18,7 @@ pois aqui eles serão utilizados com frequência.
 A limpeza mais simples que você pode fazer em uma tabela é selecionar um
 subconjunto de colunas. Aqui você utilizará uma função chamada
 `select()` (“selecionar”) e algumas auxiliares chamadas `starts_with()`
-(“começa com”) e `contains()` (“contém”). Só não se esqueça de carregar
+(“começa com”) e `contains()` (“contém”). Não se esqueça de carregar
 o `tidyverse`\!
 
 ``` r
@@ -130,7 +130,7 @@ tutorial sobre controle.
 Obs. 2: Perceba que quando você usa o nome de uma coluna dentro de
 `filter()` não se colocam aspas em volta dele, mas as aspas são
 necessárias quando trata-se do valor verificado. Isso é porque a coluna
-`DRE` contém textos, então, para verificar se a quela coluna é igual a
+`DRE` contém textos, então, para verificar se aquela coluna é igual a
 um valor, este valor precisa ser um texto.
 
 Como com a `select()`, abaixo são apresentados alguns comandos exemplos
