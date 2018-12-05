@@ -11,7 +11,7 @@ geral.
 
 ### O RStudio
 
-Na figura abaixo você verá o RStudio aberto com algum código já
+Na figura abaixo, você verá o RStudio aberto com algum código já
 executado. Não se preocupe com os detalhes, o objetivo dessa imagem é só
 ilustrar o que cada parte da interface faz.
 
