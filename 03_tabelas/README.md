@@ -1,12 +1,11 @@
-Tutorial 04: Tabelas
+Tutorial 03: Tabelas
 ================
 
 ### Sobre este tutorial
 
 Aqui você aprenderá sobre o tipo de objeto mais comum no R: *data
-frames* (tabelas). Primeiramente você aprenderá como o R padrão usa
-tabelas e depois como melhorar esses comportamentos. Para iniciar esse
-tutorial você precisará antes ter instalado o pacote `tidyverse` como
+frames* (tabelas). 
+Para iniciar esse tutorial você precisará antes ter instalado o pacote `tidyverse` como
 indicado no primeiro tutorial de todos.
 
 ### O básico
@@ -95,8 +94,7 @@ mtcars
 
 O objeto `mtcars` já vem embutido no R, por isso você não precisa
 criá-lo. Perceba que todas as linhas são exibidas, de forma que fica
-difícil se orientar dentro da tabela\! Isso pode ser um problema enorme
-se a sua tabela for muito comprida ou muito larga, tornando a
+difícil se orientar dentro da tabela\! Isso pode ser um problema se a sua tabela for muito comprida ou muito larga, tornando a
 visualização do objeto completamente impossível.
 
 Por isso usamos uma alternativa proveniente do `tidyverse`. Essa
@@ -204,8 +202,7 @@ valores:
   - `<dttm>`: Data-horas (abreviação de “*date time*”), um tipo um pouco
     mais complexo de se lidar.
 
-Estes não são os únicos tipos possíveis, mas são pelo menos os mais
-comuns.
+Estes não são os únicos tipos possíveis, mas são os mais comuns.
 
 ### Funcionalidades
 
@@ -227,6 +224,7 @@ teclado e usando a tecla **Tab**.
 Extraindo uma coluna, é possível usar qualquer outra função do R como se
 você estivesse trabalhando com um vetor. Abaixo tiramos a média das
 idades dos alunos.
+
 
 ``` r
 # Média da idade dos alunos
