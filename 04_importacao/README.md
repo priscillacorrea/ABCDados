@@ -8,22 +8,21 @@ sua primeira tarefa será importar esses dados para o R. Em outras
 palavras, você precisará converter um arquivo Excel/CSV/… para um objeto
 como o que foi visto no tutorial passado.
 
-Neste tutorial você baixará duas tabelas do portal [Dados
-Abertos](http://dados.prefeitura.sp.gov.br/) da Prefeitura de São Paulo
-e importará elas para o R.
+Neste tutorial, você importará para o R duas tabelas referentes a educação municipal de São Paulo, disponibilizadas no Portal [Dados
+Abertos](http://dados.prefeitura.sp.gov.br/) da Prefeitura de São Paulo.
 
-### Baixando os dados
+### Importando os dados
 
-Para este tutorial vamos usar os dados do [cadastro de escolas
+Para este tutorial vamos usar os dados da base ["Cadastro de escolas
 municipais, conveniadas e
-privadas](http://dados.prefeitura.sp.gov.br/dataset/cadastro-de-escolas-municipais-conveniadas-e-privadas).
+privadas"](http://dados.prefeitura.sp.gov.br/dataset/cadastro-de-escolas-municipais-conveniadas-e-privadas).
 As duas tabelas que vamos utilizar estão hospedadas nos links a seguir
 (clique neles para baixá-las):
 [dicionário](http://dados.prefeitura.sp.gov.br/dataset/8da55b0e-b385-4b54-9296-d0000014ddd5/resource/52b8a68b-ad4f-4f56-95ec-c2b0da052849/download/dicionarior34.xlsx)
 e
 [cadastro](http://dados.prefeitura.sp.gov.br/dataset/8da55b0e-b385-4b54-9296-d0000014ddd5/resource/dfa2e046-b975-4ff5-983f-dacfd8cb06b2/download/escolasr34dez2017.csv).
 
-No dia-a-dia é muito comum receber tabelas como estas por email ou mesmo
+No dia-a-dia, é muito comum receber tabelas como estas por email ou mesmo
 criá-las por conta própria a partir de dados brutos. O fato é que estes
 são os dois formatos mais comuns de se ver no mundo real: Excel e CSV
 (abreviação do inglês para “valores separados por vírgula”).
@@ -55,7 +54,7 @@ Obs.: Se você precisar *voltar* uma pasta, ou seja, ir para uma pasta
 mais externa do que a na qual você se encontra, basta escrever “../” (ou
 “../../” para voltar duas pastas e assim por diante).
 
-É prática comum salvamos o caminho para um arquivo em uma variável. Isso
+É prática comum salvarmos o caminho para um arquivo em uma variável. Isso
 permite que seja fácil reutilizar este objeto e modificá-lo caso você
 precise mudar o arquivo de lugar.
 
@@ -75,7 +74,7 @@ Excel\! Para carregar este pacote, basta rodar o comando a seguir:
 library(readxl)
 ```
 
-A partir daí ler o arquivo é uma tarefa fácil. Você só precisa usar a
+A partir daí, ler o arquivo é uma tarefa fácil. Você só precisa usar a
 função `read_xlsx()` (“ler xlsx” em inglês):
 
 ``` r
@@ -135,7 +134,7 @@ o mesmo processo para encontrar este arquivo.
 caminho_cadastro <- "Downloads/escolasr34dez2017.csv"
 ```
 
-A partir de agora o processo fica um pouco diferente da leitura do
+A partir de agora, o processo fica um pouco diferente da leitura do
 Excel. Arquivos CSV são universais, mas infelizmente eles não possuem um
 padrão tão forte quanto outros tipos de arquivo; dependendo do idioma do
 seu computador e do idioma do computador de quem escreveu o arquivo, ele
@@ -146,7 +145,7 @@ de formato e de codificação (ou *encoding* em inglês).
 
   - Em inglês, o separador de decimais é o ponto (“123.45” ao invés de
     “123,45”) e esta diferença pode gerar problemas na hora de salvar
-    um arquivo CSV\! Quando o seu computador está em português pode ser
+    um arquivo CSV\! Quando o seu computador está em português, pode ser
     que ele tente manter a vírgula como separador decimal no CSV,
     gerando um tipo de arquivo comumente chamado de CSV2. Em resumo,
     você precisará usar uma função diferente para lê-lo.
@@ -155,13 +154,13 @@ de formato e de codificação (ou *encoding* em inglês).
     computador salva arquivos. Este tópico é muito extenso para cobrir
     neste tutorial, mas é importante saber que letras com acentos podem
     ser salvas de formas diferentes por diferentes computadores. Caso
-    você se depare com caracteres malucos ao ler um arquivo,
+    você se depare com caracteres diferentes ao ler um arquivo,
     provavelmente você está vendo o resultado de um problema na
     codificação do mesmo.
 
 No meu computador eu me deparo com ambos estes problemas relatados
 acima\! A verdade é que eles são realmente bastante comuns, então não é
-de se surpreender. O que você precisa aprender é a contorná-los.
+de se surpreender. Mas não se preocupe, é possível a contorná-los.
 
 Como o arquivo que você baixou é um CSV e não temos nenhuma informação
 extra sobre ele, a primeira tentativa deve ser usar a função
@@ -258,8 +257,7 @@ View(cadastro)
 
 ### Problemas de codificação
 
-Se você tem olhos de águia, pode ser que você tenha reparados alguns
-caracteres estranhos nas colunas com textos. Abaixo você pode ver o que
+É possível observar que há alguns caracteres estranhos nas colunas com textos. Abaixo, veja o que
 foi salvo na sexta linha da coluna `ENDERECO`:
 
 ``` r
@@ -288,8 +286,8 @@ arquivo. Neste caso, ela tem apenas um palpite chamado “ISO-8859-1”;
 este é um código que pode ser utilizado pelo R para ler o arquivo
 corretamente.
 
-No comando abaixo é demonstrado como fazer para mudar a codificação na
-hora de importar um arquivo. Primeiramente você deve criar um objeto com
+No comando abaixo é demonstrado como nudar a codificação na
+hora de importar um arquivo. Primeiramente, você deve criar um objeto com
 o código do *encoding* usando a função `locale()` e depois você deve
 passar este objeto como sendo o valor do argumento `locale` da função
 `read_csv2()` (ou qualquer outra função de importação que você estiver
