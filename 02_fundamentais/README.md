@@ -38,16 +38,16 @@ Os quadrantes demarcados são os seguintes:
     
       - **Help**: Esta aba mostra manuais de como usar as funções.
 
-O último quadrante (na direita superior) é bem menos importante. Nele
+O último quadrante (na direita superior) é menos relevante. Nele
 são exibidos os objetos criados no seu programa.
 
-Quando você abrir o RStudio pela primeira vez pode ser que ele esteja
+Quando você abrir o RStudio pela primeira vez, é possível que ele esteja
 ligeiramente diferente do retratado na imagem acima, mas isso é normal.
 Na sessão abaixo já veremos como mudar isso.
 
 ### O primeiro script
 
-A partir de agora abandonaremos as figuras: sua tarefa é copiar os
+A partir de agora, não usaremos as figuras: sua tarefa é copiar os
 códigos denotados pelo fundo cinza e executá-los\! Nestes tutoriais,
 sempre que você vir uma caixa com o fundo cinza, quer dizer que você
 pode copiar o seu conteúdo e colá-lo no arquivo que você acabou de
@@ -211,7 +211,7 @@ meu_vetor
 
     #> [1] 1 2 3 4 5 6 7 8 9
 
-Só a título de demonstração, podemos passar vários vetores para `c()` de
+Para demonstração, podemos passar vários vetores para `c()` de
 modo que ela concatene todos eles. Abaixo temos uma função chamada
 `repetir_quatro()` que recebe um argumento `v` e o concatena consigo
 mesmo quatro vezes.
