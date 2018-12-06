@@ -267,5 +267,5 @@ Expressões regulares são um assunto extremamente complexo e praticamente
 inesgotável, sendo portanto impossível abordá-lo nestes tutoriais
 introdutórios. Neste
 [link](http://www.gagolewski.com/software/stringi/manual/?manpage=stringi-search-regex)
-(em inglês) é possível encontrar uma documentação muito boa de todos os
+(em inglês) é possível encontrar uma documentação sobre todos os
 tipos de padrão que podem ser utilizados com as funções do R.
